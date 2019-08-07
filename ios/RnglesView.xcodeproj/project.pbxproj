@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3E7B58A1CC2AC0600A0062D /* RnglesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RnglesView.m */; };
+		5E61E46622FA4172002FE063 /* RNGLESView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E46522FA4172002FE063 /* RNGLESView.mm */; };
+		5E61E46B22FA4862002FE063 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E61E46A22FA4862002FE063 /* GLKit.framework */; };
+		B3E7B58A1CC2AC0600A0062D /* RNGLESViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNGLESViewManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,9 +25,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libRnglesView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRnglesView.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E7B5881CC2AC0600A0062D /* RnglesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RnglesView.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* RnglesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RnglesView.m; sourceTree = "<group>"; };
+		134814201AA4EA6300B7C361 /* libRNGLESView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNGLESView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E61E46422FA4172002FE063 /* RNGLESView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNGLESView.h; sourceTree = "<group>"; };
+		5E61E46522FA4172002FE063 /* RNGLESView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RNGLESView.mm; sourceTree = "<group>"; };
+		5E61E46A22FA4862002FE063 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		5E61E47522FA4E3C002FE063 /* cpp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cpp; path = ../cpp; sourceTree = "<group>"; };
+		B3E7B5881CC2AC0600A0062D /* RNGLESViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGLESViewManager.h; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* RNGLESViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGLESViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E61E46B22FA4862002FE063 /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,7 +49,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libRnglesView.a */,
+				134814201AA4EA6300B7C361 /* libRNGLESView.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -50,18 +57,38 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				5E61E47522FA4E3C002FE063 /* cpp */,
+				5E61E46922FA4862002FE063 /* Frameworks */,
 				134814211AA4EA7D00B7C361 /* Products */,
-				B3E7B5881CC2AC0600A0062D /* RnglesView.h */,
-				B3E7B5891CC2AC0600A0062D /* RnglesView.m */,
+				5E61E47422FA4DA6002FE063 /* RNGLESView */,
 			);
+			sourceTree = "<group>";
+		};
+		5E61E46922FA4862002FE063 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E61E46A22FA4862002FE063 /* GLKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E61E47422FA4DA6002FE063 /* RNGLESView */ = {
+			isa = PBXGroup;
+			children = (
+				5E61E46422FA4172002FE063 /* RNGLESView.h */,
+				5E61E46522FA4172002FE063 /* RNGLESView.mm */,
+				B3E7B5881CC2AC0600A0062D /* RNGLESViewManager.h */,
+				B3E7B5891CC2AC0600A0062D /* RNGLESViewManager.m */,
+			);
+			path = RNGLESView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* RnglesView */ = {
+		58B511DA1A9E6C8500147676 /* RNGLESView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RnglesView" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNGLESView" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -71,9 +98,9 @@
 			);
 			dependencies = (
 			);
-			name = RnglesView;
+			name = RNGLESView;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libRnglesView.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libRNGLESView.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -82,7 +109,7 @@
 		58B511D31A9E6C8500147676 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
@@ -90,12 +117,11 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RnglesView" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNGLESView" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -103,7 +129,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* RnglesView */,
+				58B511DA1A9E6C8500147676 /* RNGLESView */,
 			);
 		};
 /* End PBXProject section */
@@ -113,7 +139,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E7B58A1CC2AC0600A0062D /* RnglesView.m in Sources */,
+				B3E7B58A1CC2AC0600A0062D /* RNGLESViewManager.m in Sources */,
+				5E61E46622FA4172002FE063 /* RNGLESView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +151,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -132,12 +160,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -174,6 +204,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -182,12 +213,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -224,8 +257,9 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RnglesView;
+				PRODUCT_NAME = RNGLESView;
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/../cpp\"";
 			};
 			name = Debug;
 		};
@@ -240,15 +274,16 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RnglesView;
+				PRODUCT_NAME = RNGLESView;
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}/../cpp\"";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RnglesView" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNGLESView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -257,7 +292,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RnglesView" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNGLESView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,

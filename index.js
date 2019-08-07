@@ -1,5 +1,17 @@
-import { requireNativeComponent } from 'react-native';
+import React from 'react';
+import { View, requireNativeComponent } from 'react-native';
 
-const RnglesView = requireNativeComponent('RnglesView', null);
+export class GLESView extends React.Component {
+    render() {
+        const {viewName, ...rest} = this.props
+        return (
+            <View {...rest}>
+                <GLESView.RNGLESView style={{ flex: 1 }} viewName={viewName} />
+            </View>
+        )
+    }
 
-export default RnglesView;
+    static RNGLESView = requireNativeComponent('RNGLESView', GLESView);
+}
+
+export default GLESView;

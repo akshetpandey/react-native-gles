@@ -16,8 +16,10 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
   s.source       = { :git => "https://github.com/akshetpandey/react-native-gles.git", :tag => "#{s.version}" }
 
-  s.source_files = "ios/**/*.{h,hpp,m,mm,c,cpp,swift}"
+  s.source_files = "{ios,cpp}/**/*.{h,hpp,m,mm,c,cpp,swift}"
   s.requires_arc = true
+
+  s.framework    = "GLKit"
 
   s.dependency "React"
 end

@@ -7,9 +7,9 @@ import androidx.appcompat.widget.AppCompatCheckBox;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 
-public class RnglesViewManager extends SimpleViewManager<View> {
+public class RNGLESViewManager extends SimpleViewManager<View> {
 
-    public static final String REACT_CLASS = "RnglesView";
+    public static final String REACT_CLASS = "RNGLESView";
 
     @Override
     public String getName() {

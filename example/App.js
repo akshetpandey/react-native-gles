@@ -10,16 +10,16 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import RnglesView from 'react-native-gles';
+import RNGLESView from 'react-native-gles';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>☆RnglesView example☆</Text>
+        <Text style={styles.welcome}>☆RNGLESView example☆</Text>
         <Text style={styles.instructions}>STATUS: loaded</Text>
         <Text style={styles.welcome}>☆☆☆</Text>
-        <RnglesView />
+        <RNGLESView />
       </View>
     );
   }

@@ -2,7 +2,7 @@ module.exports = {
     dependency: {
         platforms: {
             ios: {
-                project: 'ios/RNglesView.xcworkspace'
+                project: 'ios/RNGLESView.xcworkspace'
             }
         }
     }
