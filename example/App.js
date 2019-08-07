@@ -10,16 +10,14 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import RNGLESView from 'react-native-gles';
+import GLESView from 'react-native-gles';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>☆RNGLESView example☆</Text>
-        <Text style={styles.instructions}>STATUS: loaded</Text>
-        <Text style={styles.welcome}>☆☆☆</Text>
-        <RNGLESView />
+        <Text style={styles.welcome}>RNGLESView example</Text>
+        <GLESView style={{width:130, height:100}} viewName="TeapotScene" />
       </View>
     );
   }
