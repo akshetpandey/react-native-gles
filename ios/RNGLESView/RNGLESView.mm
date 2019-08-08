@@ -11,6 +11,7 @@
 #import <React/RCTViewManager.h>
 
 #import "GLESView.hpp"
+#import "GLESViewFactory.hpp"
 
 @implementation RNGLESView {
     BOOL _needsDisplay;
@@ -49,7 +50,7 @@
 
 - (void)update:(CADisplayLink *)displayLink {
     if (_nativeView) {
-        _needsDisplay = _needsDisplay | _nativeView->update(displayLink.timestamp);
+        _needsDisplay = _needsDisplay || _nativeView->update(displayLink.timestamp);
         if (_needsDisplay) {
             _needsDisplay = NO;
             [self setNeedsDisplay];

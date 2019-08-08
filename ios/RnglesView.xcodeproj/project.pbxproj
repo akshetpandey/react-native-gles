@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E578B9422FB8D6D00750517 /* GLESView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E578B9022FB8D6D00750517 /* GLESView.cpp */; };
+		5E578B9522FB8D6D00750517 /* GLESViewFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E578B9122FB8D6D00750517 /* GLESViewFactory.cpp */; };
 		5E61E46622FA4172002FE063 /* RNGLESView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5E61E46522FA4172002FE063 /* RNGLESView.mm */; };
 		5E61E46B22FA4862002FE063 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E61E46A22FA4862002FE063 /* GLKit.framework */; };
 		B3E7B58A1CC2AC0600A0062D /* RNGLESViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNGLESViewManager.m */; };
@@ -26,10 +28,13 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNGLESView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNGLESView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E578B9022FB8D6D00750517 /* GLESView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLESView.cpp; sourceTree = "<group>"; };
+		5E578B9122FB8D6D00750517 /* GLESViewFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLESViewFactory.cpp; sourceTree = "<group>"; };
+		5E578B9222FB8D6D00750517 /* GLESView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLESView.hpp; sourceTree = "<group>"; };
+		5E578B9322FB8D6D00750517 /* GLESViewFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLESViewFactory.hpp; sourceTree = "<group>"; };
 		5E61E46422FA4172002FE063 /* RNGLESView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNGLESView.h; sourceTree = "<group>"; };
 		5E61E46522FA4172002FE063 /* RNGLESView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RNGLESView.mm; sourceTree = "<group>"; };
 		5E61E46A22FA4862002FE063 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		5E61E47522FA4E3C002FE063 /* cpp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cpp; path = ../cpp; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNGLESViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGLESViewManager.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNGLESViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGLESViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,11 +62,23 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				5E61E47522FA4E3C002FE063 /* cpp */,
+				5E578B8F22FB8D6D00750517 /* cpp */,
 				5E61E46922FA4862002FE063 /* Frameworks */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				5E61E47422FA4DA6002FE063 /* RNGLESView */,
 			);
+			sourceTree = "<group>";
+		};
+		5E578B8F22FB8D6D00750517 /* cpp */ = {
+			isa = PBXGroup;
+			children = (
+				5E578B9022FB8D6D00750517 /* GLESView.cpp */,
+				5E578B9122FB8D6D00750517 /* GLESViewFactory.cpp */,
+				5E578B9222FB8D6D00750517 /* GLESView.hpp */,
+				5E578B9322FB8D6D00750517 /* GLESViewFactory.hpp */,
+			);
+			name = cpp;
+			path = ../cpp;
 			sourceTree = "<group>";
 		};
 		5E61E46922FA4862002FE063 /* Frameworks */ = {
@@ -139,7 +156,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E578B9422FB8D6D00750517 /* GLESView.cpp in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNGLESViewManager.m in Sources */,
+				5E578B9522FB8D6D00750517 /* GLESViewFactory.cpp in Sources */,
 				5E61E46622FA4172002FE063 /* RNGLESView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +268,7 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -266,6 +286,7 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

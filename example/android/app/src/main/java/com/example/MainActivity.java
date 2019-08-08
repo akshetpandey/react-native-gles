@@ -1,8 +1,12 @@
 package com.example;
 
 import com.facebook.react.ReactActivity;
+import com.facebook.soloader.SoLoader;
 
 public class MainActivity extends ReactActivity {
+    static {
+        SoLoader.loadLibrary("exampleNative");
+    }
 
     /**
      * Returns the name of the main component registered from JavaScript.

@@ -6,6 +6,7 @@
 //  Copyright © 2019 Facebook. All rights reserved.
 //
 #include "TeapotScene.hpp"
+#include "GLESViewFactory.hpp"
 
 REGISTER_SCENE(TeapotScene)
 

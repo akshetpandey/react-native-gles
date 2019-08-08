@@ -21,18 +21,33 @@ apply plugin: 'maven'
 // https://github.com/facebook/react-native/blob/0.59-stable/template/android/build.gradle#L5-L9
 def DEFAULT_COMPILE_SDK_VERSION = 28
 def DEFAULT_BUILD_TOOLS_VERSION = "28.0.3"
-def DEFAULT_MIN_SDK_VERSION = 16
+def DEFAULT_MIN_SDK_VERSION = 21
 def DEFAULT_TARGET_SDK_VERSION = 28
 
 android {
   compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
   buildToolsVersion safeExtGet('buildToolsVersion', DEFAULT_BUILD_TOOLS_VERSION)
 
+  externalNativeBuild {
+    cmake {
+      path "src/main/cpp/CMakeLists.txt"
+      version "3.10.2"
+    }
+  }
+
   defaultConfig {
     minSdkVersion safeExtGet('minSdkVersion', DEFAULT_MIN_SDK_VERSION)
     targetSdkVersion safeExtGet('targetSdkVersion', DEFAULT_TARGET_SDK_VERSION)
     versionCode 1
     versionName "1.0"
+    ndk {
+      abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+    }
+    externalNativeBuild {
+      cmake {
+          arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang", "-DANDROID_STL=c++_shared"
+      }
+    }
   }
   lintOptions {
     abortOnError false
@@ -46,11 +61,13 @@ repositories {
         // https://github.com/facebook/react-native/blob/0.59-stable/template/android/build.gradle#L30
         url "$projectDir/../node_modules/react-native/android"
     }
-    mavenCentral()
+    google()
+    jcenter()
 }
 
 dependencies {
     implementation "com.facebook.react:react-native:${safeExtGet('reactnativeVersion', '+')}"
+    implementation 'androidx.annotation:annotation:1.1.0'
 }
 
 def configureReactNativePom(def pom) {
