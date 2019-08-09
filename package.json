@@ -2,7 +2,7 @@
   "name": "react-native-gles",
   "description": "React Native GLES component for iOS and Android",
   "title": "React Native GLES",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
@@ -80,14 +80,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "files": [
-    "android",
-    "ios",
-    "cpp",
-    "lib",
-    "index.js",
-    "index.d.ts",
-    "react-native-gles.podspec"
-  ]
+  }
 }
