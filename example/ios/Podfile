@@ -30,7 +30,7 @@ target 'example' do
 	pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
 	pod 'glog', :podspec => "#{rn_path}/third-party-podspecs/GLog.podspec"
 
-  pod 'react-native-gles', :path => '../../react-native-gles.podspec'
+ 	pod 'react-native-gles', :path => '../../react-native-gles.podspec'
   
 	target 'exampleTests' do
 		inherit! :search_paths

@@ -15,10 +15,11 @@
 class TeapotScene : public GLESView {
   public:
     TeapotScene() noexcept;
+    void initializeGL();
+    void destroyGL();
     bool update(double timestamp);
     void draw();
   private:
-    bool didInit_;
     float fx_;
     float fy_;
     float delta_;

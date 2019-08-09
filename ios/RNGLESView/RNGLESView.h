@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RNGLESView : GLKView
 
-@property (nonatomic, strong, nullable) CADisplayLink *displayLink;
-@property (nonatomic, strong, nullable) NSString *viewName;
+@property (readwrite, nonatomic, strong, nullable) NSString *viewName;
 
 @end
 

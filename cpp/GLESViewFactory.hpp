@@ -8,6 +8,9 @@
 
 #include "GLESView.hpp"
 
+#include <map>
+#include <string>
+
 #define REGISTER_SCENE(GLESView) \
 __attribute__((constructor)) static void GLESView##_initalize() { \
     GLESViewFactory::registerView<GLESView>(#GLESView); \

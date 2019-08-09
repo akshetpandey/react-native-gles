@@ -6,8 +6,7 @@
 cmake_minimum_required(VERSION 3.10.2)
 
 # Set compiler flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frtti -fexceptions -std=c++14 -Wno-deprecated-declarations -Wno-reorder -Wno-invalid-offsetof -fPIC -unresolved-symbols=ignore-in-shared-libs")
-SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frtti -fexceptions -std=c++14 -Wno-deprecated-declarations -Wno-reorder -Wno-invalid-offsetof -fPIC")
 
 set(repoROOT_DIR ../../../../..)
 set(rnglesview_DIR ${repoROOT_DIR}/..)
@@ -15,6 +14,7 @@ set(rnglesview_DIR ${repoROOT_DIR}/..)
 # Add source files to be compliled here
 # Path is relative to this CMakeLists.txt file
 set(SOURCE_FILES
+        jniHelper.cpp
         ${repoROOT_DIR}/cpp/TeapotScene.cpp
         ${repoROOT_DIR}/cpp/TeapotRenderer/teapot.inl
         ${repoROOT_DIR}/cpp/TeapotRenderer/Shaders/ShaderPlain.fsh
@@ -34,7 +34,7 @@ include_directories(${repoROOT_DIR}/cpp/TeapotRenderer/)
 
 include_directories(${rnglesview_DIR}/cpp/)
 
-add_subdirectory(${rnglesview_DIR}/android/src/main/cpp ./../../../.externalNativeBuild/rnglesviewNativeBuildDir)
+add_subdirectory(${rnglesview_DIR}/android/src/main/cpp ../../../rnglesviewNativeBuildDir)
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -49,15 +49,7 @@ add_library(
 
         # Provides a relative path to your source file(s).
         ${SOURCE_FILES}
-        $<TARGET_OBJECTS:rnglesviewNative>)
-
-#add_library(rnglesviewNative-lib SHARED IMPORTED)
-#
-#set(distribution_DIR ${rnglesview_DIR}/android/build/outputs/aar/android-debug/jni/)
-#
-#set_target_properties(rnglesviewNative-lib PROPERTIES IMPORTED_LOCATION
-#        ${distribution_DIR}/debug/${ANDROID_ABI}/librnglesviewNative.so)
-#
+        $<TARGET_OBJECTS:rnglesviewNativeObject>)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -89,5 +81,4 @@ target_link_libraries( # Specifies the target library.
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib}
-        ${glesv2-lib}
-        ${rnglesviewNative-lib})
+        ${glesv2-lib})

@@ -85,6 +85,7 @@ public class RNGLESView extends GLTextureView implements GLTextureView.Renderer 
   }
 
   public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+    initializeGL(mNativePeer);
   }
 
   public void onDrawFrame(GL10 unused) {
@@ -96,6 +97,7 @@ public class RNGLESView extends GLTextureView implements GLTextureView.Renderer 
   }
 
   private native long initialize();
+  private native void initializeGL(long nativePeer);
   private native void destroy(long nativePeer);
   private native boolean nativeUpdate(long nativePeer, long frameTimeNanos);
   private native void nativeOnDrawFrame(long nativePeer);

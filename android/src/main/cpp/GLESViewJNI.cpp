@@ -13,24 +13,57 @@ GLESViewJNI::GLESViewJNI(JNIEnv *env, jobject thiz) {
 
 void GLESViewJNI::destroy(JNIEnv *env) {
     env->DeleteWeakGlobalRef(_weakJavaPeer);
+    destroyGL();
+    _nativeView = nullptr;
 }
 
 void GLESViewJNI::setView(std::string view) {
+    _renderMutex.lock();
+    _didInitialize = false;
+    if(_nativeView) {
+        _nativeView->destroyGL();
+    }
     _nativeView = GLESViewFactory::createView(view);
+    _renderMutex.unlock();
+}
+
+void GLESViewJNI::initializeGL() {
+    _renderMutex.lock();
+    if (!_didInitialize && _nativeView) {
+        _nativeView->initializeGL();
+        _didInitialize = true;
+    }
+    _renderMutex.unlock();
+}
+
+void GLESViewJNI::destroyGL() {
+    _renderMutex.lock();
+    _didInitialize = false;
+    if (_nativeView) {
+        _nativeView->destroyGL();
+    }
+    _renderMutex.unlock();
 }
 
 bool GLESViewJNI::update(int64_t frameTimeNanos) {
-    if (_nativeView) {
-        return _nativeView->update(frameTimeNanos/NANO_SECONDS_IN_SECONDS);
+    bool shouldUpdate = false;
+    _renderMutex.lock();
+    if (_didInitialize && _nativeView) {
+        shouldUpdate = _nativeView->update(frameTimeNanos/NANO_SECONDS_IN_SECONDS);
     } else {
-        return false;
+        shouldUpdate = true;
     }
+    _renderMutex.unlock();
+    return shouldUpdate;
 }
 
 void GLESViewJNI::draw() {
-    if (_nativeView) {
+    initializeGL();
+    _renderMutex.lock();
+    if (_didInitialize && _nativeView) {
         _nativeView->draw();
     }
+    _renderMutex.unlock();
 }
 
 extern "C" {
@@ -40,6 +73,13 @@ Java_com_akshetpandey_rnglesview_RNGLESView_initialize(
         JNIEnv *env, jobject instance) {
     auto peer = new GLESViewJNI(env, instance);
     return (jlong) peer;
+}
+
+JNIEXPORT void JNICALL
+Java_com_akshetpandey_rnglesview_RNGLESView_initializeGL(
+        JNIEnv *env, jobject instance, jlong nativePeer) {
+    auto peer = (GLESViewJNI *) nativePeer;
+    peer->initializeGL();
 }
 
 JNIEXPORT void JNICALL
