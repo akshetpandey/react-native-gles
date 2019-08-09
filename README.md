@@ -5,7 +5,7 @@ A `<GLESView>` component for React Native.
 
 Tested on react-native >= 0.60.0, may work on older versions.
 
-![Preview](https://github.com/akshetpandey/react-native-gles/tree/master/docs/video_preview.gif)
+![Preview](docs/video_preview.gif)
 
 ## Getting started
 
