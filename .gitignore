@@ -7,6 +7,7 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+package-lock.json
 
 # Xcode
 #
@@ -36,8 +37,25 @@ build/
 local.properties
 *.iml
 .externalNativeBuild/
+android/gradle
+android/gradlew
+android/gradlew.bat
+
 
 # BUCK
 buck-out/
 \.buckd/
 *.keystore
+
+# Rubygem bundles
+#
+bundles/
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+lib/

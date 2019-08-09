@@ -24,12 +24,12 @@
    * "postinstall": "node ../scripts/examples_postinstall.js node_modules/react-native-library-name/"
    */
 
-  'use strict';
+  
 
   const fs = require('fs');
   const path = require('path');
 
-  /// Delete all files and directories for the given path
+  // / Delete all files and directories for the given path
   const removeFileDirectoryRecursively = fileDirPath => {
     // Remove file
     if (!fs.lstatSync(fileDirPath).isDirectory()) {
@@ -45,7 +45,7 @@
     fs.rmdirSync(fileDirPath);
   };
 
-  /// Remove example/node_modules/react-native-library-name/node_modules directory
+  // / Remove example/node_modules/react-native-library-name/node_modules directory
   const removeLibraryNodeModulesPath = (libraryNodeModulesPath) => {
     const nodeModulesPath = path.resolve(libraryNodeModulesPath, 'node_modules')
 
@@ -63,7 +63,7 @@
     }
   };
 
-  /// Remove all entries from the .npmignore within  example/node_modules/react-native-library-name/
+  // / Remove all entries from the .npmignore within  example/node_modules/react-native-library-name/
   const removeLibraryNpmIgnorePaths = (npmIgnorePath, libraryNodeModulesPath) => {
     if (!fs.existsSync(npmIgnorePath)) {
       console.log(`No .npmignore path found at ${npmIgnorePath}. Skipping deleting content.`);

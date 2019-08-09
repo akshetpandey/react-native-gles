@@ -9,15 +9,21 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, ImageBackground } from 'react-native';
 import GLESView from 'react-native-gles';
 
 export default class App extends Component {
   render() {
     return (
-      <ImageBackground style={styles.container} source={require("./background.png")}>
+      <ImageBackground
+        style={styles.container}
+        source={require('./background.png')}
+      >
         <Text style={styles.welcome}>RNGLESView example</Text>
-        <GLESView style={{width:200, height:200, marginTop: 100}} viewName="TeapotScene" />
+        <GLESView
+          style={{ width: 200, height: 200, marginTop: 100 }}
+          viewName="TeapotScene"
+        />
       </ImageBackground>
     );
   }
@@ -28,8 +34,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: "100%", 
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
   welcome: {
     fontSize: 20,
