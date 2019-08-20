@@ -18,52 +18,45 @@ void GLESViewJNI::destroy(JNIEnv *env) {
 }
 
 void GLESViewJNI::setView(std::string view) {
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
     _didInitialize = false;
     if(_nativeView) {
         _nativeView->destroyGL();
     }
     _nativeView = GLESViewFactory::createView(view);
-    _renderMutex.unlock();
 }
 
 void GLESViewJNI::initializeGL() {
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
     if (!_didInitialize && _nativeView) {
         _nativeView->initializeGL();
         _didInitialize = true;
     }
-    _renderMutex.unlock();
 }
 
 void GLESViewJNI::destroyGL() {
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
     _didInitialize = false;
     if (_nativeView) {
         _nativeView->destroyGL();
     }
-    _renderMutex.unlock();
 }
 
 bool GLESViewJNI::update(int64_t frameTimeNanos) {
-    bool shouldUpdate = false;
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
     if (_didInitialize && _nativeView) {
-        shouldUpdate = _nativeView->update(frameTimeNanos/NANO_SECONDS_IN_SECONDS);
+        return _nativeView->update(frameTimeNanos/NANO_SECONDS_IN_SECONDS);
     } else {
-        shouldUpdate = true;
+        return true;
     }
-    _renderMutex.unlock();
-    return shouldUpdate;
 }
 
 void GLESViewJNI::draw() {
     initializeGL();
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
     if (_didInitialize && _nativeView) {
         _nativeView->draw();
     }
-    _renderMutex.unlock();
 }
 
 extern "C" {

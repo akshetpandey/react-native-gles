@@ -8,6 +8,8 @@
 
 #import "RNGLESView.h"
 
+#import <mutex>
+
 #import <React/RCTViewManager.h>
 
 #import "RNGLESContextManager.h"
@@ -66,7 +68,7 @@
 }
 
 - (void)setViewName:(NSString *)viewName {
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
 
     _didInitialize = false;
     if (_nativeView) {
@@ -88,28 +90,24 @@
             self->_didInitialize = true;
         }];
     }
-    
-    _renderMutex.unlock();
 
     _viewName = viewName;
 }
 
 - (void)update:(CADisplayLink *)displayLink {
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
     if (_didInitialize && _nativeView) {
         if (_nativeView->update(displayLink.timestamp)) {
             [self setNeedsDisplay];
         }
     }
-    self->_renderMutex.unlock();
 }
 
 - (void)drawRect:(CGRect)rect {
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
     if (_didInitialize && _nativeView) {
         _nativeView->draw();
     }
-    _renderMutex.unlock();
 }
 
 @end

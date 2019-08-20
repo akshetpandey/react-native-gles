@@ -55,11 +55,11 @@
     "husky": "^3.0.0",
     "jest": "24.8.0",
     "lint-staged": "^9.0.1",
-    "metro-react-native-babel-preset": "0.55.0",
+    "metro-react-native-babel-preset": "0.56.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.17.0",
     "react": "^16.8.6",
-    "react-native": "^0.60.4",
+    "react-native": "^0.60.5",
     "typescript": "3.5.3"
   },
   "husky": {

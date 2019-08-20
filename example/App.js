@@ -8,22 +8,30 @@
  * https://github.com/facebook/react-native
  */
 
-import React, { Component } from 'react';
-import { StyleSheet, Text, ImageBackground } from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, Text, ImageBackground} from 'react-native';
 import GLESView from 'react-native-gles';
 
 export default class App extends Component {
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      if (window.__GLESManagerBinding) {
+        console.log(window.__GLESManagerBinding);
+        window.__GLESManagerBinding.createRenderer('test');
+        clearInterval(this.timer);
+      } else {
+        console.log('Not Available');
+      }
+    }, 1000);
+  }
+
   render() {
     return (
       <ImageBackground
         style={styles.container}
-        source={require('./background.png')}
-      >
+        source={require('./background.png')}>
         <Text style={styles.welcome}>RNGLESView example</Text>
-        <GLESView
-          style={{ width: 200, height: 200, marginTop: 100 }}
-          viewName="TeapotScene"
-        />
+        <GLESView style={styles.glesViewStyle} viewName="TeapotScene" />
       </ImageBackground>
     );
   }
@@ -46,5 +54,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  glesViewStyle: {
+    width: 200,
+    height: 200,
+    marginTop: 100,
   },
 });
