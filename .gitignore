@@ -27,7 +27,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
+xcshareddata
 
 # Android/IntelliJ
 #
@@ -40,12 +40,13 @@ local.properties
 android/gradle
 android/gradlew
 android/gradlew.bat
-
+.cxx
 
 # BUCK
 buck-out/
 \.buckd/
 *.keystore
+!debug.keystore
 
 # Rubygem bundles
 #
