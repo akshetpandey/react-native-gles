@@ -15,7 +15,7 @@
 
 RCT_EXPORT_MODULE(RNGLESView)
 
-RCT_EXPORT_VIEW_PROPERTY(viewName, NSString *)
+RCT_EXPORT_VIEW_PROPERTY(handle, int64_t)
 
 - (UIView *)view {
     RNGLESContextManager *contextManager = [RNGLESContextManager sharedInstance];

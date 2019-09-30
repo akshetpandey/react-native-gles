@@ -1,4 +1,4 @@
-import GLESView from './src/GLESView';
+import GLESView from './lib/GLESView'
+import GLESScene from './lib/GLESScene'
 
-export { GLESView };
-export default GLESView;
+export { GLESView, GLESScene }

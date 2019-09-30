@@ -58,8 +58,7 @@
   auto cxxBridge = (RCTCxxBridge *)bridge;
   [cxxBridge invokeAsync:[cxxBridge]() {
     auto runtime = (facebook::jsi::Runtime *)cxxBridge.runtime;
-    auto glesManager = std::make_unique<GLESManager>();
-    auto glesManagerBinding = std::make_shared<GLESManagerBinding>(std::move(glesManager));
+    auto glesManagerBinding = std::make_shared<GLESManagerBinding>();
     GLESManagerBinding::install(*runtime, glesManagerBinding);
   }];
   return NULL;

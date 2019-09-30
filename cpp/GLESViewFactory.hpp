@@ -5,11 +5,12 @@
 //  Created by Akshet Pandey on 7/30/19.
 //  Copyright © 2019. All rights reserved.
 //
+#pragma once
+
+#include <cstdint>
+#include <string>
 
 #include "GLESView.hpp"
-
-#include <map>
-#include <string>
 
 #define REGISTER_SCENE(GLESView) \
 __attribute__((constructor)) static void GLESView##_initalize() { \
@@ -17,18 +18,19 @@ __attribute__((constructor)) static void GLESView##_initalize() { \
 }
 
 template<typename T>
-std::unique_ptr<GLESView> createT() { return std::make_unique<T>(); }
+std::shared_ptr<GLESView> createT(int64_t handle) { return std::make_shared<T>(handle); }
 
 class GLESViewFactory {
 public:
   template<class T>
   static void registerView(std::string const& s) {
-    getViewMap()->insert(std::make_pair(s, &createT<T>));
+    GLESViewFactory::registerViewConstructor(s, &createT<T>);
   }
   
-  typedef std::map<std::string, std::unique_ptr<GLESView>(*)()> ViewMap;
-  
-  static std::unique_ptr<GLESView> createView(std::string const& s);
+  static std::shared_ptr<GLESView> createView(std::string const& s);
+  static void destroyView(std::shared_ptr<GLESView> view);
+  static std::shared_ptr<GLESView> getView(int64_t handle);
 
-  static ViewMap * getViewMap();
+private:
+  static void registerViewConstructor(std::string const& s, std::shared_ptr<GLESView>(constructor)(int64_t));
 };

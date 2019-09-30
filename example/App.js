@@ -10,28 +10,28 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, Text, ImageBackground} from 'react-native';
-import GLESView from 'react-native-gles';
+import {GLESView, GLESScene} from 'react-native-gles';
+
+class TeapotScene extends GLESScene {
+  nativeSceneName() {
+    return 'TeapotScene';
+  }
+}
 
 export default class App extends Component {
-  componentDidMount() {
-    this.timer = setInterval(() => {
-      if (window.__GLESManagerBinding) {
-        console.log(window.__GLESManagerBinding);
-        window.__GLESManagerBinding.createRenderer('test');
-        clearInterval(this.timer);
-      } else {
-        console.log('Not Available');
-      }
-    }, 1000);
+  constructor(props) {
+    super(props);
+    this.scene = new TeapotScene();
   }
 
   render() {
+    console.log('Scene:', this.scene);
     return (
       <ImageBackground
         style={styles.container}
         source={require('./background.png')}>
         <Text style={styles.welcome}>RNGLESView example</Text>
-        <GLESView style={styles.glesViewStyle} viewName="TeapotScene" />
+        <GLESView style={styles.glesViewStyle} scene={this.scene} />
       </ImageBackground>
     );
   }
