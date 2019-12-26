@@ -1,18 +1,22 @@
+/* eslint react/jsx-props-no-spreading: ["error", { "exceptions": ["View"] }] */
+
 import React from 'react';
 import { ViewProps, View, requireNativeComponent } from 'react-native';
 
-interface GLESViewProps extends ViewProps {
-  viewName: string;
+import GLESScene from './GLESScene';
+
+export interface GLESViewProps extends ViewProps {
+  scene: GLESScene;
 }
 
-export default class GLESView extends React.Component<GLESViewProps> {
+export default class GLESView extends React.PureComponent<GLESViewProps> {
   static RNGLESView = requireNativeComponent('RNGLESView');
 
   render() {
-    const { viewName, ...rest } = this.props;
+    const { scene, ...rest } = this.props;
     return (
       <View {...rest}>
-        <GLESView.RNGLESView style={{ flex: 1 }} viewName={viewName} />
+        <GLESView.RNGLESView style={{ flex: 1 }} handle={scene.handle()} />
       </View>
     );
   }

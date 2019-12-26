@@ -10,7 +10,11 @@
 
 REGISTER_SCENE(TeapotScene)
 
-TeapotScene::TeapotScene() noexcept : fx_(0), fy_(1), delta_(0.01)  {
+TeapotScene::TeapotScene(int64_t handle) noexcept
+: GLESView(handle),
+fx_(0),
+fy_(1),
+delta_(0.01)  {
   ndk_helper::Vec2 vec(fx_, fy_);
   renderer_.Bind(&tap_camera_);
   tap_camera_.SetFlip(1, 1, 1);
@@ -30,21 +34,21 @@ bool TeapotScene::update(double timestamp) {
   ndk_helper::Vec2 vec(fx_, fy_);
   tap_camera_.Drag(vec);
   renderer_.Update(timestamp);
-
+  
   fx_ += delta_;
   if (fx_ >= 1.0f) {
     delta_ = -0.01f;
   } else if (fx_ <= -1.0f) {
     delta_ = 0.01f;
   }
-
+  
   return true;
 }
 
 void TeapotScene::draw() {
   glClearColor(0.f, 0.f, 0.f, 0.25f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+  
   renderer_.UpdateViewport();
   renderer_.Render();
 }

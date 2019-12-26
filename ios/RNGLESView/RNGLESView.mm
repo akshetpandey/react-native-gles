@@ -8,6 +8,8 @@
 
 #import "RNGLESView.h"
 
+#import <mutex>
+
 #import <React/RCTViewManager.h>
 
 #import "RNGLESContextManager.h"
@@ -17,7 +19,7 @@
 
 @implementation RNGLESView {
     CADisplayLink *_displayLink;
-    std::unique_ptr<GLESView> _nativeView;
+    std::shared_ptr<GLESView> _nativeView;
     std::mutex _renderMutex;
     std::atomic_bool _didInitialize;
 }
@@ -42,11 +44,11 @@
     }
 
     if (_nativeView) {
-        auto oldView = _nativeView.release();
+        auto oldView = _nativeView;
+        _nativeView = nullptr;
         RNGLESContextManager *contextManager = [RNGLESContextManager sharedInstance];
         [contextManager dispatchAsyncInGLLoaderThread:^{
             oldView->destroyGL();
-            delete oldView;
         }];
     }
 }
@@ -65,20 +67,20 @@
     }
 }
 
-- (void)setViewName:(NSString *)viewName {
-    _renderMutex.lock();
+- (void)setHandle:(int64_t)handle {
+    std::lock_guard<std::mutex> lock(_renderMutex);
 
     _didInitialize = false;
     if (_nativeView) {
-        auto oldView = _nativeView.release();
+        auto oldView = _nativeView;
+        _nativeView = nullptr;
         RNGLESContextManager *contextManager = [RNGLESContextManager sharedInstance];
         [contextManager dispatchAsyncInGLLoaderThread:^{
             oldView->destroyGL();
-            delete oldView;
         }];
     }
 
-    _nativeView = GLESViewFactory::createView([viewName cStringUsingEncoding:NSUTF8StringEncoding]);
+    _nativeView = GLESViewFactory::getView(handle);
     if (_nativeView) {
         // Thread safe because delete is called on the glLoader thread which is serialized
         auto newView = _nativeView.get();
@@ -88,28 +90,24 @@
             self->_didInitialize = true;
         }];
     }
-    
-    _renderMutex.unlock();
 
-    _viewName = viewName;
+    _handle = handle;
 }
 
 - (void)update:(CADisplayLink *)displayLink {
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
     if (_didInitialize && _nativeView) {
         if (_nativeView->update(displayLink.timestamp)) {
             [self setNeedsDisplay];
         }
     }
-    self->_renderMutex.unlock();
 }
 
 - (void)drawRect:(CGRect)rect {
-    _renderMutex.lock();
+    std::lock_guard<std::mutex> lock(_renderMutex);
     if (_didInitialize && _nativeView) {
         _nativeView->draw();
     }
-    _renderMutex.unlock();
 }
 
 @end

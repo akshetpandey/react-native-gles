@@ -7,11 +7,23 @@
 //
 #pragma once
 
-class GLESView {
+#include <cstdint>
+
+#include <jsi/jsi.h>
+
+class GLESViewFactory;
+
+class JSI_EXPORT GLESView : public facebook::jsi::HostObject {
+    friend class GLESViewFactory;
+
 public:
+    GLESView(int64_t handle);
+
+    int64_t handle() const;
+    
     // [any thread]
     // GL context is not set
-    virtual ~GLESView() = default;
+    virtual ~GLESView();
 
     // [gl loader thread]
     // GL context is set for current thread
@@ -32,4 +44,8 @@ public:
     // GL context is set for current thread
     // Only issue draw calls, do not update any state
     virtual void draw() { }
+
+    virtual facebook::jsi::Value get(facebook::jsi::Runtime& runtime, const facebook::jsi::PropNameID& propName);
+private:
+    int64_t handle_;
 };

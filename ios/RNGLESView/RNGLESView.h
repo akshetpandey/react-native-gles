@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RNGLESView : GLKView
 
-@property (readwrite, nonatomic, strong, nullable) NSString *viewName;
+@property (readwrite, nonatomic, assign) int64_t handle;
 
 @end
 

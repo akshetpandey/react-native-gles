@@ -14,7 +14,7 @@
 
 class TeapotScene : public GLESView {
   public:
-    TeapotScene() noexcept;
+    TeapotScene(int64_t handle) noexcept;
     void initializeGL();
     void destroyGL();
     bool update(double timestamp);
